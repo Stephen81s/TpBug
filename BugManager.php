@@ -21,8 +21,22 @@ function getBugs() {
  * charcher en memoire notre source de donées
  */
 function load(){
-    
+
+    //recup le csv 
+$fichier = 'data.txt';
+$csv = new SplFileObject($fichier);
+$csv->setFlags(SplFileObject::READ_CSV);
+$csv->setCsvControl(';');
+       //parse le csv ligne a ligne
+ foreach($csv as $ligne){
+	print_r($ligne);
+        //var_dump($ligne) ;
+        //echo $ligne[0]. "+" .$ligne[1]; 
 }
+  
+   //fermer le csv
+}
+
 /**
  //ajouter un bug a la liste
  * @param Bugs $bug
@@ -36,9 +50,11 @@ function add(Bugs $bug){
  */
 function remove(Bugs $bug){
     if(in_array( $bug,$this->bugs)) {
-        unset($this->bugs[]);
+        unset($this->bugs[$bug->getId()]);
     }
 }
+
 }
+
 ?>
 
