@@ -20,6 +20,45 @@
 
    <h1>Liste des bugs</h1>
 
+<!-- -------------------------------- -->
+<table class="table-fill">
+<thead>
+<tr>
+<th class="text-left">Id</th>
+<th class="text-left">Titre</th>
+<th class="text-left">Description</th>
+<th class="text-left">Action</th>
+
+
+</tr>
+</thead>
+<tbody class="table-hover">
+<tr>
+
+      <?php
+
+            foreach($bugManager->getBug() as $bug){ ?>
+             <tr><td><?php
+            echo $bug->getId();?></td>
+                <td><?php echo $bug->getTitre();?>
+
+                </td>
+                <td><a href="show.php?id=<?=$bug->getId()?>">voir plus</a></td>
+                <td> </td>
+            </tr>
+
+                <?php
+
+
+            }
+           ?>
+</tr>
+
+
+</table>
+<!-- -------------------------------------------------------- -->
+
+
 <ul>
 
     <?php foreach($bugManager->getBug() as $bug){ ?>
