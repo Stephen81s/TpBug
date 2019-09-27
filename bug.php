@@ -51,17 +51,19 @@ require('conn.php');
             $this->statut = $statut;
         }
 
-        function load($id, $bdd){
+        function load($id){
             $bdd = connexionBdd();
-            $sth = $bdd->query('SELECT * FROM `bug` WHERE `id` = $id',PDO::FETCH_ASSOC);
-            var_dump($sth);
-            // while ($donnee=$sth->fetch()){
-            //
-            //     $this->setId($id);
-            //     $this->setDescription($description);
-            //
-            //
-            // }
+            $sth = $bdd->query("SELECT * FROM bug WHERE id = $id",PDO::FETCH_ASSOC);
+            //var_dump($sth);
+            while ($donnee=$sth->fetch()){
+
+                $this->setId($donnee["id"]);
+                $this->setTitre($donnee["titre"]);
+                $this->setDescription($donnee["description"]);
+                $this->setStatut($donnee["statut"]);
+
+
+            }
         }
 
   }

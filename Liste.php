@@ -31,8 +31,12 @@
        </li>
      </a>
 
-
     <?php } ?>
 </ul>
+
+
+     <form action="addBug.php" method="post">
+       <input type="submit" value="Ajouter un bug" />
+     </form>
 </body>
 </html>

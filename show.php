@@ -3,8 +3,9 @@
     include("bug.php");
 
     $id=$_GET['id'];
-    $bug = new bug();
-    $bug->load($id, $sth);
+    $bug = new bug("","","","");
+    $bug->load($id);
+    //var_dump($bug);
 
 ?>﻿
 
@@ -19,8 +20,17 @@
 	<meta charset="utf-8" />
 </head>
 <body>
+
    <h1>Bug <?=$bug->getTitre();?></h1>
+<div id="corps">
+<?=$bug->getDescription();?><br>
 
-
+<?php
+if ($bug->getStatut()==0){
+  echo"non traiter";
+}
+else{echo "résolut";}
+?>
+</div>
 </body>
 </html>
