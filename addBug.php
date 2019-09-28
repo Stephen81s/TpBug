@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" >
 
 <link rel="stylesheet" href="feuillestyle.css"/>
 
@@ -16,21 +17,27 @@
   if(empty($_POST)){ ?>
     <form action="" method="post">
 
-      <input type="text" name="titre" value = '' placeholder="Titre du bug"/>
-      <input type="text" name="description" value = '' placeholder="Description du bug"/>
-      <input type="hidden" name="statut" value ="0"/>
-      
+<div id="conteneur">
+        <input class="Titre "type="text" name="titre" value = '' placeholder="Titre du bug"/></br></br>
+        <textarea class="Description" type="textarea" cols="40" rows="5" name="description" value = '' placeholder="Description du bug"></textarea></br></br>
+        <input type="hidden" name="statut" value ="0"/>
 
-      <input type="submit" value="Valider" />
-    </form>
-    <?php }
-else{
-  require('bugManager.php');
-  $manager = new bugManager();
-  $manager->addBug($_POST);
-  header("Location:liste.php");
 
-} ?>
+        <input type="submit" value="Valider" />
+      </form>
+</div>
 
-  </body>
-  </html>
+<form action="liste.php" method="">
+</br> <div id="bouton"><button type="submit" class="btn btn-success"><i class="fas fa-arrow-circle-left fa-5x"></i></button></div>
+</form>
+  <?php }
+  else{
+    require('bugManager.php');
+    $manager = new bugManager();
+    $manager->addBug($_POST);
+    header("Location:liste.php");
+
+  } ?>
+
+</body>
+</html>

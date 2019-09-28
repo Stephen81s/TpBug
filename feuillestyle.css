@@ -1,19 +1,85 @@
- h1
-    {
-    color:#f37120;
-    text-align: center;
-    font-size: 30px;
-    }
+h1
+{
+  color:#f37120;
+  text-align: center;
+  font-size: 30px;
+}
 
-    #corps{
-    border:2px solid #f37120;
-    border-radius:10px;
-    text-align: center;
-    padding: 6px;
-    box-shadow:1px 1px 2px #ffffff inset;
-    width: 70%;
-    padding-top: 6px;
-    margin: auto;
-    box-shadow:4px 4px 4px gray,
+#corps{
+  border:2px solid #f37120;
+  border-radius:10px;
+  text-align: center;
+  padding: 6px;
+  box-shadow:1px 1px 2px #ffffff inset;
+  width: 70%;
+  padding-top: 6px;
+  margin: auto;
+  box-shadow:4px 4px 4px gray,
   -1px -1px 2px white;
-  }
+}
+
+#bouton{
+  float: right;
+  padding-right: 30%;
+}
+
+caption{
+  border-collapse: collapse;
+  border: 3px solid #f37120  ;
+}
+table {
+  margin:auto;
+  border-collapse: collapse;
+  border: 3px solid #f37120  ;
+}
+
+th, td {
+  padding: 20px;
+  border: 3px solid #f37120  ;
+}
+
+i{
+  color :#f37120;
+}
+
+.btn-success {
+  background-color: white;
+  border: none;
+}
+
+#scroll{
+width: 60%;
+margin: auto;
+}
+
+input{
+  border:2px solid #f37120;
+  border-radius:10px;
+  text-align: center;
+}
+
+textarea{
+  border:2px solid #f37120;
+  border-radius:10px;
+  text-align: center;
+}
+
+.Titre{
+  width: 20%;
+}
+
+.Description{
+  width: 20%;
+  height: 30%;
+}
+#conteneur{
+  text-align: center;
+}
+#nt{
+  color:red;
+  font-weight: bold;
+}
+#r{
+  color:green;
+  font-weight: bold;
+}
