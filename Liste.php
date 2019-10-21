@@ -2,7 +2,7 @@
 
 include("bugManager.php");
 $bugManager = new bugManager();
-$bugManager->load();
+$bugs = $bugManager->findAll();
 
 ?>﻿
 
@@ -19,6 +19,9 @@ $bugManager->load();
 <body>
 
   <h1>Liste des bugs</h1>
+  <form action="addBug.php" method="">
+  </br> <div id="bouton"><button type="submit" class="btn btn-success"><i class="fa fa-plus fa-5x "></i></button></div>
+  </form>
 
   <div id="scroll" style="overflow:scroll; height:70%;">
 
@@ -30,6 +33,7 @@ $bugManager->load();
         <th><h4>Id du bug</h4></th>
         <th>Titre du bug</th>
         <th>Description du bug</th>
+        <th>Date de creation</th>
         <th>Statut du bug</th>
         <th>Plus de détails</th>
 
@@ -37,14 +41,15 @@ $bugManager->load();
     </thead>
     <tbody class="table-hover">
       <tr>
-        <?php foreach($bugManager->getBug() as $bug){ ?>
+
+        <?php foreach($bugs as $bug){ ?>
           <tr>
             <td><?php echo $bug->getId();?></td>
             <td><?php echo $bug->getTitre();?></td>
             <td><?=$bug->getDescription();?> </td>
-            <td><?=$bug->getStatut();
-
-             if ($bug->getStatut()==0){?>
+            <td><?php echo $bug->getCreatedAt();?></td>
+            <td><?php
+             if ($bug->getStatut()=="0"){?>
               <div id="nt">non traiter</div>
             <?php }
             else{ ?>
@@ -55,8 +60,8 @@ $bugManager->load();
         <?php } ?>
     </tr>
   </table></div>
-  <form action="addBug.php" method="">
+  <!-- <form action="addBug.php" method="">
   </br> <div id="bouton"><button type="submit" class="btn btn-success"><i class="fa fa-plus fa-5x "></i></button></div>
-  </form>
+  </form> -->
 </body>
 </html>

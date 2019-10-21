@@ -1,8 +1,6 @@
 ﻿<!DOCTYPE html>
 <?php
 
-require('conn.php');
-
     class Bug{
         public $id;
         public $titre;
@@ -12,15 +10,21 @@ require('conn.php');
         // public function __construct() {
         // }
 
-        public function __construct($id, $titre, $description, $statut) {
-            $this->id = $id;
-            $this->titre = $titre;
-            $this->description = $description;
-            $this->istatutd = $statut;
+        public function __construct() {
+            // $this->id = $id;
+            // $this->titre = $titre;
+            // $this->description = $description;
+            // $this->statut = $statut;
+            // $this->createdAt = $createdAt;
+
         }
 
         function getId() {
             return $this->id;
+        }
+
+        function getCreatedAt() {
+            return $this->createdAt;
         }
 
         function getTitre() {
@@ -39,6 +43,10 @@ require('conn.php');
             $this->id = $id;
         }
 
+        function setCreatedAt($createdAt) {
+            $this->createdAt = $createdAt;
+        }
+
         function setTitre($titre) {
             $this->titre = $titre;
         }
@@ -49,21 +57,6 @@ require('conn.php');
 
         function setStatut($statut) {
             $this->statut = $statut;
-        }
-
-        function load($id){
-            $bdd = connexionBdd();
-            $sth = $bdd->query("SELECT * FROM bug WHERE id = $id",PDO::FETCH_ASSOC);
-            //var_dump($sth);
-            while ($donnee=$sth->fetch()){
-
-                $this->setId($donnee["id"]);
-                $this->setTitre($donnee["titre"]);
-                $this->setDescription($donnee["description"]);
-                $this->setStatut($donnee["statut"]);
-
-
-            }
         }
 
   }

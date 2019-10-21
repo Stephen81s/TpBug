@@ -1,10 +1,14 @@
 <?php
 
-include("bug.php");
+
+include("bugManager.php");
+
 
 $id=$_GET['id'];
-$bug = new bug("","","","");
-$bug->load($id);
+
+$bugManager = new bugManager();
+$bug = $bugManager->find($id);
+
 //var_dump($bug);
 
 ?>﻿
@@ -27,7 +31,7 @@ $bug->load($id);
 
     <?=$bug->getDescription();?><br>
 
-    <?php if ($bug->getStatut()==0){?>
+    <?php if ($bug->getStatut()==="0"){?>
       <div id="nt">non traiter</div>
     <?php }
     else{ ?>

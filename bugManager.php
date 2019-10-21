@@ -1,40 +1,58 @@
 
 <?php
 include('bug.php');
-class bugManager{
-  private $bug = [];
+include('manager.php');
 
+class bugManager extends Manager {
 
   function __construct() {
 
   }
 
+  function findAll(){
 
-  function getBug() {
-    return $this->bug;
-  }
+    $bugs = [];
 
-  function setBug($bug) {
-    $this->bug = $bug;
-  }
+    $bdd = $this->connexionBdd();
+    $datas = $bdd->query('SELECT * FROM `bug` ORDER BY `id`',PDO::FETCH_ASSOC);
 
-  function load(){
-    $bdd = connexionBdd();
-    $bugs = $bdd->query('SELECT * FROM `bug` ORDER BY `id`',PDO::FETCH_ASSOC);
+    while ($donnee=$datas->fetch()){
+      $bug = new Bug();
+      $bug->setId($donnee['id']);
+      $bug->setTitre( $donnee['titre']);
+      $bug->setDescription($donnee['description']);
+      $bug->setCreatedAt($donnee['createdAt']);
+      $bug->setStatut( $donnee['statut']);
 
-    while ($donnee=$bugs->fetch()){
-      $bug = new Bug($donnee['id'], $donnee['titre'], $donnee['description'], $donnee['statut']);
-      array_push($this->bug,$bug);
+//$donnee['id'], $donnee['titre'], $donnee['description'],$donnee['createdAt'], $donnee['statut']
+
+      array_push($bugs,$bug);
     }
+    return ($bugs);
+  }
+
+  function find($id){
+      $bdd = $this->connexionBdd();
+      $sth = $bdd->query("SELECT * FROM bug WHERE id = $id",PDO::FETCH_ASSOC);
+      $donnee=$sth->fetch();
+      //var_dump($sth);
+      $bug = new Bug();
+      $bug->setId($donnee["id"]);
+      $bug->setTitre($donnee["titre"]);
+      $bug->setDescription($donnee["description"]);
+      $bug->setCreatedAt($donnee["createdAt"]);
+      $bug->setStatut($donnee["statut"]);
+
+      return $bug;
+
   }
 
   function addBug(){
-    $bdd = connexionBdd();
-    $req = $bdd->prepare('INSERT INTO bug (titre,description,statut) VALUE (:titre,:description,:statut)');
+    $bdd = $this->connexionBdd();
+    $req = $bdd->prepare('INSERT INTO bug (titre,description) VALUE (:titre,:description)');
     $req->execute (array(
-    'titre'=>$_POST['titre'],
-    'description'=>$_POST['description'],
-    'statut'=>$_POST['statut']));
+    'titre'=>htmlspecialchars($_POST['titre']),
+    'description'=>htmlspecialchars($_POST['description'])));
     $req->closeCursor();
   }
 }

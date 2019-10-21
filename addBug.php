@@ -20,7 +20,7 @@
 <div id="conteneur">
         <input class="Titre "type="text" name="titre" value = '' placeholder="Titre du bug"/></br></br>
         <textarea class="Description" type="textarea" cols="40" rows="5" name="description" value = '' placeholder="Description du bug"></textarea></br></br>
-        <input type="hidden" name="statut" value ="0"/>
+
 
 
         <input type="submit" value="Valider" />
