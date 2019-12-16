@@ -1,6 +1,6 @@
 <?php
 
-include("bugManager.php");
+//include("./Models/bugManager.php");
 $bugManager = new bugManager();
 $bugs = $bugManager->findAll();
 
@@ -19,11 +19,9 @@ $bugs = $bugManager->findAll();
 <body>
 
   <h1>Liste des bugs</h1>
-  <form action="addBug.php" method="">
-  </br> <div id="bouton"><button type="submit" class="btn btn-success"><i class="fa fa-plus fa-5x "></i></button></div>
-  </form>
 
-  <div id="scroll" style="overflow:scroll; height:70%;">
+  <a class="btn btn-success" href="add"><i class="fa fa-plus fa-5x "></i></a>
+  <div id="scroll">
 
 
   <table class="table">
@@ -50,18 +48,19 @@ $bugs = $bugManager->findAll();
             <td><?php echo $bug->getCreatedAt();?></td>
             <td><?php
              if ($bug->getStatut()=="0"){?>
+
+
               <div id="nt">non traiter</div>
             <?php }
             else{ ?>
               <div id="r">résolut</div>
             <?php } ?> </td>
-            <td><a href="show.php?id=<?=$bug->getId()?>"><center><i class="fas fa-search fa-2x"></center></a></td>
+            <td><a href="show/<?=$bug->getId()?>"><center><i class="fas fa-search fa-2x"></center></a></td>
           </tr>
         <?php } ?>
     </tr>
   </table></div>
-  <!-- <form action="addBug.php" method="">
-  </br> <div id="bouton"><button type="submit" class="btn btn-success"><i class="fa fa-plus fa-5x "></i></button></div>
-  </form> -->
+
 </body>
+<!-- <script type="text/javascript" src ="app.js"></script> -->
 </html>

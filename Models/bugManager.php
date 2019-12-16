@@ -1,20 +1,17 @@
 
 <?php
 include('bug.php');
-include('manager.php');
+require('manager.php');
 
 class bugManager extends Manager {
-
+private $bdd;
   function __construct() {
-
+      $this->bdd = $this->connexionBdd();
   }
 
   function findAll(){
-
     $bugs = [];
-
-    $bdd = $this->connexionBdd();
-    $datas = $bdd->query('SELECT * FROM `bug` ORDER BY `id`',PDO::FETCH_ASSOC);
+    $datas = $this->bdd->query('SELECT * FROM `bug` ORDER BY `id`',PDO::FETCH_ASSOC);
 
     while ($donnee=$datas->fetch()){
       $bug = new Bug();
@@ -32,8 +29,8 @@ class bugManager extends Manager {
   }
 
   function find($id){
-      $bdd = $this->connexionBdd();
-      $sth = $bdd->query("SELECT * FROM bug WHERE id = $id",PDO::FETCH_ASSOC);
+      // var_dump($bdd->query('SELECT * FROM 'bug' WHERE 'id' = "'.$id.'"'));die;
+      $sth = $this->bdd->query("SELECT * FROM bug WHERE id = $id");
       $donnee=$sth->fetch();
       //var_dump($sth);
       $bug = new Bug();
@@ -48,8 +45,7 @@ class bugManager extends Manager {
   }
 
   function addBug(){
-    $bdd = $this->connexionBdd();
-    $req = $bdd->prepare('INSERT INTO bug (titre,description) VALUE (:titre,:description)');
+    $req = $this->bdd->prepare('INSERT INTO bug (titre,description) VALUE (:titre,:description)');
     $req->execute (array(
     'titre'=>htmlspecialchars($_POST['titre']),
     'description'=>htmlspecialchars($_POST['description'])));

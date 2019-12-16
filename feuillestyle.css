@@ -48,6 +48,8 @@ i{
 }
 
 #scroll{
+overflow:scroll;
+height:70%;
 width: 60%;
 margin: auto;
 }

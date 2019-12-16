@@ -6,14 +6,15 @@
 <html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-  <title>Liste des bugs</title>
+  <title>Ajout de bug</title>
   <meta charset="utf-8" />
 </head>
 <body>
 
-  <h1>Liste des bugs</h1>
+  <h1>Ajout de bug</h1>
 
   <?php
+  //var_dump($_POST);
   if(empty($_POST)){ ?>
     <form action="" method="post">
 
@@ -27,17 +28,9 @@
       </form>
 </div>
 
-<form action="liste.php" method="">
-</br> <div id="bouton"><button type="submit" class="btn btn-success"><i class="fas fa-arrow-circle-left fa-5x"></i></button></div>
-</form>
+<a class="btn btn-success" href="list"><i class="fas fa-arrow-circle-left fa-5x"></i></a>
   <?php }
-  else{
-    require('bugManager.php');
-    $manager = new bugManager();
-    $manager->addBug($_POST);
-    header("Location:liste.php");
-
-  } ?>
+   ?>
 
 </body>
 </html>
