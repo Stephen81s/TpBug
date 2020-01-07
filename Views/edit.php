@@ -22,7 +22,7 @@
         <input class="Id "type="text" name="id" value = "" placeholder="<?= $bug->getId()?>"/></br></br>
         <input class="Titre "type="text" name="titre" value = "" placeholder="<?= $bug->getTitre()?>"/></br></br>
         <textarea class="Description" type="textarea" cols="40" rows="5" name="description" value = '' placeholder="<?= $bug->getDescription()?>"></textarea></br></br>
-        <textarea class="Date de creation" type="textarea" name="date de creation" value = '' placeholder="Description du bug"></textarea>
+        <input class="Date de creation" type="text" name="date de creation" value = '' placeholder="<?= $bug->getDate()?>">
 
 
         <input type="submit" value="Valider" />
