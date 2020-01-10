@@ -41,7 +41,7 @@ class BugController{
 
         ob_start();
         $params;
-    
+
         require($templatePath);
 
         return ob_get_clean();
@@ -72,7 +72,7 @@ class BugController{
     public function edit($id){
       $bugManager = new BugManager();
       $bug = $bugManager->find($id);
-      var_dump($bug);
+      //var_dump($bug);
       $content = $this->render('Views/edit', ['bug' => $bug]);
       return $this->sendHttpResponse($content, 200);
     }

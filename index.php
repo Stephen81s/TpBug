@@ -4,7 +4,7 @@ require './Controllers/bugController.php';
 $controler = new BugController();
 
 $arguments = explode("/", $_SERVER["REQUEST_URI"]);
-echo( $_SERVER["REQUEST_URI"]);
+//echo( $_SERVER["REQUEST_URI"]);
 
 switch ($arguments[4]) {
     case "":
