@@ -1,4 +1,3 @@
-
 <?php
 include('bug.php');
 require('manager.php');
@@ -44,12 +43,36 @@ private $bdd;
 
   }
 
-  function addBug(){
+  function addBug($bug){
     $req = $this->bdd->prepare('INSERT INTO bug (titre,description) VALUE (:titre,:description)');
     $req->execute (array(
-    'titre'=>htmlspecialchars($_POST['titre']),
-    'description'=>htmlspecialchars($_POST['description'])));
+    'titre'=>$bug->getTitre(),
+    'description'=>$bug->getDescription()));
     $req->closeCursor();
   }
+
+  // function updateBug(){
+  //   $req = $this->bdd->prepare('Update bug (statut) set (:statut) where id = :id)');
+  //   $req->execute (array(
+  //   'statut'=>htmlspecialchars($_POST['statut'])));
+  //   $req->closeCursor();
+  // }
+
+  function updateBug($bug){
+    $sqlupdate = "update bug set titre =:titre, description=:description, statut =:statut where id=:id";
+    $req = $this->bdd->prepare ($sqlupdate);
+    $req ->execute(['titre'=> $bug->getTitre(),
+                    'description'=> $bug->getDescription(),
+                    'statut' => $bug->getStatut(),
+                    'id'=> $bug->getId(),]);
+    $req->closeCursor();
+  }
+
+  // function deleteBug(){
+  //   $sqldelete = "delete from bug where id=:id";
+  //   $req =$bdd ->prepare ($sqldelete);
+  //   $req ->execute(['id'=>htmlspecialchars($_POST['id']]);
+  //   $req->closeCursor();
+  // }
 }
 ?>

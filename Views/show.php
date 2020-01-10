@@ -22,6 +22,7 @@ $bug = $params['bug'];
   <title><?=$bug->getTitre();?></title>
   <meta charset="utf-8" />
 </head>
+
 <body>
 
   <h1>Bug </br><?=$bug->getTitre();?></h1>
@@ -31,18 +32,16 @@ $bug = $params['bug'];
     <?=$bug->getDescription();?><br>
 
     <?php if ($bug->getStatut()==="0"){?>
-<!-- <button type="submit" >Envoyer le message</button> -->
-      <!-- <div id="nt">non traiter</div> -->
-      <button type="submit" ><div id="nt">non traiter</div></button>
+
+      <a id="trigger" class="nt" onclick="makeRequest(<?= $bug->getId() ?>)">non traiter</a>
     <?php }
     else{ ?>
-      <!-- <div id="r">résolut</div> -->
-        <button type="submit" ><div id="r">résolut</div></button>
+        <span id="r" class="r">résolu</span>
     <?php } ?>
 
   </div>
 
 <a class="btn btn-success" href="../list"><i class="fas fa-arrow-circle-left fa-5x"></i></a>
 </body>
-<script type="text/javascript" src ="app.js"></script>
+<script type="text/javascript" src ="../Resources/app.js"></script>
 </html>

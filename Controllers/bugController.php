@@ -33,7 +33,6 @@ class BugController{
         $bugManager = new BugManager();
         $bug = $bugManager->find($id);
         $content = $this->render('Views/show', ['bug' => $bug]);
-
         return $this->sendHttpResponse($content, 200);
     }
 
@@ -42,7 +41,7 @@ class BugController{
 
         ob_start();
         $params;
-
+    
         require($templatePath);
 
         return ob_get_clean();
@@ -56,5 +55,26 @@ class BugController{
         echo $content;
     }
 
+    public function update($id){
+      $bugManager = new BugManager();
+      $bug = $bugManager->find($id);
+      if (isset($_POST['statut'])){
+        $bug->setStatut($_POST['statut']);
+      }
+      $bugManager->updateBug($bug);
+      http_response_code(200);
+      header('Content-type: application/json');
+      $response=['success'=> true,'id'=>$bug->getId()];
+      $json = json_encode($response);
+      echo $json;
+    }
+
+    public function edit($id){
+      $bugManager = new BugManager();
+      $bug = $bugManager->find($id);
+      var_dump($bug);
+      $content = $this->render('Views/edit', ['bug' => $bug]);
+      return $this->sendHttpResponse($content, 200);
+    }
 }
 ?>

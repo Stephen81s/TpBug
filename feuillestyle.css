@@ -47,12 +47,12 @@ i{
   border: none;
 }
 
-#scroll{
+/* #scroll{
 overflow:scroll;
 height:70%;
 width: 60%;
 margin: auto;
-}
+} */
 
 input{
   border:2px solid #f37120;
@@ -77,11 +77,16 @@ textarea{
 #conteneur{
   text-align: center;
 }
-#nt{
+.nt{
   color:red;
   font-weight: bold;
+  text-align: center;
 }
-#r{
+.r{
   color:green;
   font-weight: bold;
+  text-align: center;
+}
+#trigger{
+  cursor: pointer;
 }
