@@ -30,7 +30,6 @@ class BugController{
       else{
         $bugs = $bugManager->findAll();
         $content = $this->render('Views/Liste', ['bugs' => $bugs]);
-
       }
       return $this->sendHttpResponse($content, 200);
     }
