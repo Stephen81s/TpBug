@@ -23,11 +23,11 @@ $bugs = $bugManager->findAll();
   <a class="btn btn-success" href="add"><i class="fa fa-plus fa-5x "></i></a>
   <div id="scroll">
 
-    
+
 
   <table class="table">
     <caption><h3> Listes des bugs rencontrées</h3><form method="POST" action="checkbox.php">
-        <input type="checkbox" name="choix[]" value="1" > liste des bug non resolu<br>
+        <input id = "checkbox" type="checkbox" name="choix[]" value="1" > liste des bug non resolu<br>
     </form></caption>
     <thead>
       <tr>
