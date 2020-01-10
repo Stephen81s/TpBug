@@ -43,6 +43,22 @@ private $bdd;
 
   }
 
+  function findByStatus(){
+
+      $sth = $this->bdd->query("SELECT * FROM bug WHERE Statut = 0 ");
+      $donnee=$sth->fetch();
+      //var_dump($sth);
+      $bug = new Bug();
+      $bug->setId($donnee["id"]);
+      $bug->setTitre($donnee["titre"]);
+      $bug->setDescription($donnee["description"]);
+      $bug->setCreatedAt($donnee["createdAt"]);
+      $bug->setStatut($donnee["statut"]);
+
+      return $bug;
+
+  }
+
   function addBug($bug){
     $req = $this->bdd->prepare('INSERT INTO bug (titre,description) VALUE (:titre,:description)');
     $req->execute (array(
@@ -51,12 +67,7 @@ private $bdd;
     $req->closeCursor();
   }
 
-  // function updateBug(){
-  //   $req = $this->bdd->prepare('Update bug (statut) set (:statut) where id = :id)');
-  //   $req->execute (array(
-  //   'statut'=>htmlspecialchars($_POST['statut'])));
-  //   $req->closeCursor();
-  // }
+
 
   function updateBug($bug){
     $sqlupdate = "update bug set titre =:titre, description=:description, statut =:statut where id=:id";

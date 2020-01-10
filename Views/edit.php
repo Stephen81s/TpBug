@@ -14,7 +14,7 @@
   <h1>Edition de bug</h1>
 
   <?php
-  $bug = $params['bug'];
+  //$bug = $params['bug'];
   if(empty($_POST)){ ?>
     <form action="" method="post">
 

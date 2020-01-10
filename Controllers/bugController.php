@@ -22,12 +22,20 @@ class BugController{
     }
 
     public function List(){
-        $bugManager = new BugManager();
+        $headers=apache_request_headers();
+          $bugManager = new BugManager();
+      if(isset ($headers["XMLHttpRequest"])){
+        $bugs = $bugManager->findByStatus();
+      }
+      else{
         $bugs = $bugManager->findAll();
         $content = $this->render('Views/Liste', ['bugs' => $bugs]);
 
-        return $this->sendHttpResponse($content, 200);
+      }
+      return $this->sendHttpResponse($content, 200);
     }
+
+
 
     public function Show($id){
         $bugManager = new BugManager();
@@ -49,9 +57,7 @@ class BugController{
 
     public static function sendHttpResponse($content, $code = 200){
         http_response_code($code);
-
         header('Content-type: text/html');
-
         echo $content;
     }
 
