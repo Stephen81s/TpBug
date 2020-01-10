@@ -25,17 +25,22 @@ class BugController{
         $headers=apache_request_headers();
           $bugManager = new BugManager();
       if(isset ($headers["XMLHttpRequest"])){
-        $bugs = $bugManager->findByStatus();
+
+        if(isset($_GET['filter'])){
+          $bugs = $bugManager->findByStatus();
+        }
+        else{  $bugs = $bugManager->findAll();
+        }
+        $response=['success'=> true,'bugs'=>$bug];
+        $json = json_encode($response);
+        echo $json;
       }
       else{
         $bugs = $bugManager->findAll();
         $content = $this->render('Views/Liste', ['bugs' => $bugs]);
+        return $this->sendHttpResponse($content, 200);
       }
-      return $this->sendHttpResponse($content, 200);
     }
-
-
-
     public function Show($id){
         $bugManager = new BugManager();
         $bug = $bugManager->find($id);
