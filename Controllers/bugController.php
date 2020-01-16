@@ -41,6 +41,8 @@ class BugController{
         return $this->sendHttpResponse($content, 200);
       }
     }
+
+    
     public function Show($id){
         $bugManager = new BugManager();
         $bug = $bugManager->find($id);
