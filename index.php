@@ -1,6 +1,6 @@
 <?php
-
-require './Controllers/bugController.php';
+require "vendor/autoload.php";
+use BugApp\Controllers\BugController;
 $controler = new BugController();
 
 $arguments = explode("/", $_SERVER["REQUEST_URI"]);

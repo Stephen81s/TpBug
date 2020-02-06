@@ -1,0 +1,16 @@
+{
+    "name": "eleve/tp-bug",
+    "authors": [
+        {
+            "name": "stephen",
+            "email": "soupart.stephen@gmail.com"
+        }
+    ],
+
+    "require": {},
+    "autoload":{
+      "psr-4":{
+        "BugApp\\":"SRC/"
+      }
+    }
+}
