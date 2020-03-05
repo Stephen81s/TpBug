@@ -1,6 +1,9 @@
 <?php
-
-require './Controllers/bugController.php';
+require __DIR__ . '/vendor/autoload.php';
+require './SRC/Controllers/BugController.php';
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
+use BugApp\Controllers\BugController;
 $controler = new BugController();
 
 $arguments = explode("/", $_SERVER["REQUEST_URI"]);
